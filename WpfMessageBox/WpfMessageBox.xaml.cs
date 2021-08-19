@@ -680,6 +680,16 @@ namespace WpfMessageBoxLibrary
             this.RemoveIconAndCloseButtons();
             base.OnSourceInitialized(e);
         }
+
+        private void Details_Expanded(object sender, RoutedEventArgs e)
+        {
+            details.Header = "Hide details";
+        }
+
+        private void Details_Collapsed(object sender, RoutedEventArgs e)
+        {
+            details.Header = "See details";
+        }
     }
 
     internal static class Extensions

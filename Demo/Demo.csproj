@@ -49,8 +49,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="WpfMessageBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="WpfMessageBox">
       <HintPath>..\WpfMessageBox\bin\Debug\WpfMessageBox.dll</HintPath>
     </Reference>
   </ItemGroup>

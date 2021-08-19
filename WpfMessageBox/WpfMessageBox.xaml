@@ -107,7 +107,7 @@
                 Grid.Row="0"
                 Margin="10"
                 Header="See details"
-                VerticalAlignment="Center">
+                VerticalAlignment="Center" Expanded="Details_Expanded" Collapsed="Details_Collapsed">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid 
                     Margin="0,10,0,0">
