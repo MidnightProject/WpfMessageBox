@@ -27,6 +27,10 @@ namespace Demo
             });
             messageBox.ShowDialog();
 
+            messageBox = new WpfMessageBox("message", WpfMessageBoxButton.OK);
+            messageBox.ShowDialog();
+            WpfMessageBoxResult result = messageBox.Result;
+
             this.Close();
         }
     }

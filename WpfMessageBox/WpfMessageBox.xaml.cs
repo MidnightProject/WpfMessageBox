@@ -62,7 +62,7 @@ namespace WpfMessageBoxLibrary
 
         public string TextBoxText
         {
-            get { return textBox.Text;  }
+            get { return textBox.Text; }
             set { textBox.Text = value; }
         }
 
@@ -219,6 +219,8 @@ namespace WpfMessageBoxLibrary
 
             DisplayButtons(button);
 
+            DisplayImage(imageMain);
+
             Message = message;
         }
 
@@ -228,6 +230,8 @@ namespace WpfMessageBoxLibrary
             DefaultSettings();
 
             DisplayButtons((WpfMessageBoxButton)button);
+
+            DisplayImage(imageMain);
 
             Message = message;
         }
@@ -250,6 +254,8 @@ namespace WpfMessageBoxLibrary
 
             DisplayButtons((WpfMessageBoxButton)button);
 
+            DisplayImage(imageMain);
+
             Title = title;
             Message = message;
         }
@@ -271,6 +277,8 @@ namespace WpfMessageBoxLibrary
             DisplayImageFooter(properties.ImageFooter);
 
             Details = properties.Details;
+
+            DisplayImage(imageMain);
 
             ButtonAbortText = properties.ButtonAbortText;
             ButtonCancelText = properties.ButtonCancelText;
@@ -303,6 +311,8 @@ namespace WpfMessageBoxLibrary
             DisplayImageFooter(properties.ImageFooter);
 
             Details = properties.Details;
+
+            DisplayImage(imageMain);
 
             ButtonAbortText = properties.ButtonAbortText;
             ButtonCancelText = properties.ButtonCancelText;
@@ -571,7 +581,7 @@ namespace WpfMessageBoxLibrary
             }
 
             content = buttonText.GetString("ButtonCancel");
-            if  (String.IsNullOrEmpty(content))
+            if (String.IsNullOrEmpty(content))
             {
                 ButtonCancelText = defaultCancelButtonText;
             }
@@ -712,7 +722,7 @@ namespace WpfMessageBoxLibrary
             IntPtr hwnd = new WindowInteropHelper(window).Handle;
 
             // Change the extended window style to not show a window icon and close button
-            SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & (0xFFFFFFFF ^ WS_SYSMENU));;
+            SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & (0xFFFFFFFF ^ WS_SYSMENU)); ;
         }
 
         [DllImport("user32.dll")]
