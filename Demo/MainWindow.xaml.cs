@@ -23,13 +23,15 @@ namespace Demo
             //WpfMessageBox messageBox = new WpfMessageBox(WpfMessageBoxButton.OKCancel);
             //WpfMessageBox messageBox = new WpfMessageBox("Error", "", WpfMessageBoxButton.OKCancel, MessageBoxImage.Error, rm);
             WpfMessageBox messageBox = new WpfMessageBox("Error", "", WpfMessageBoxButton.OKCancel, MessageBoxImage.Error, new WpfMessageBoxProperties() {
-            Details = "test details",
+                Details = "test details",
+                IsTextBoxVisible = true,
+                TextBoxMaxLength = 0,
             });
             messageBox.ShowDialog();
 
-            messageBox = new WpfMessageBox("message", WpfMessageBoxButton.OK);
-            messageBox.ShowDialog();
-            WpfMessageBoxResult result = messageBox.Result;
+            //messageBox = new WpfMessageBox("message", WpfMessageBoxButton.OK);
+            //messageBox.ShowDialog();
+            //WpfMessageBoxResult result = messageBox.Result;
 
             this.Close();
         }

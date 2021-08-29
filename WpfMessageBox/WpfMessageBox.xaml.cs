@@ -72,6 +72,12 @@ namespace WpfMessageBoxLibrary
             set { textBox.Visibility = value ? Visibility.Visible : Visibility.Collapsed; }
         }
 
+        public int TextBoxMaxLength
+        {
+            get { return textBox.MaxLength; }
+            set { textBox.MaxLength = value; }
+        }
+
         public string CheckBoxText
         {
             get { return checkBox.Content.ToString(); }
@@ -272,6 +278,7 @@ namespace WpfMessageBoxLibrary
 
             IsTextBoxVisible = properties.IsTextBoxVisible;
             TextBoxText = properties.TextBoxText;
+            TextBoxMaxLength = properties.TextBoxMaxLength;
 
             Footer = properties.Footer;
             DisplayImageFooter(properties.ImageFooter);
@@ -306,6 +313,7 @@ namespace WpfMessageBoxLibrary
 
             IsTextBoxVisible = properties.IsTextBoxVisible;
             TextBoxText = properties.TextBoxText;
+            TextBoxMaxLength = properties.TextBoxMaxLength;
 
             Footer = properties.Footer;
             DisplayImageFooter(properties.ImageFooter);
@@ -394,6 +402,7 @@ namespace WpfMessageBoxLibrary
 
             IsTextBoxVisible = properties.IsTextBoxVisible;
             TextBoxText = properties.TextBoxText;
+            TextBoxMaxLength = properties.TextBoxMaxLength;
 
             Footer = properties.Footer;
             DisplayImageFooter(properties.ImageFooter);
@@ -421,6 +430,7 @@ namespace WpfMessageBoxLibrary
 
             IsTextBoxVisible = properties.IsTextBoxVisible;
             TextBoxText = properties.TextBoxText;
+            TextBoxMaxLength = properties.TextBoxMaxLength;
 
             Footer = properties.Footer;
             DisplayImageFooter(properties.ImageFooter);
@@ -440,6 +450,7 @@ namespace WpfMessageBoxLibrary
         {
             IsTextBoxVisible = false;
             TextBoxText = String.Empty;
+            TextBoxMaxLength = 0;
 
             IsCheckBoxChecked = false;
             IsCheckBoxVisible = false;

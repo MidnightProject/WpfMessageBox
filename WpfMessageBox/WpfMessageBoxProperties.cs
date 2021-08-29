@@ -29,6 +29,7 @@ namespace WpfMessageBoxLibrary
 
         public bool IsTextBoxVisible { get; set; }
         public string TextBoxText { get; set; }
+        public int TextBoxMaxLength { get; set; }
 
         public WpfMessageBoxProperties()
         {
@@ -48,6 +49,7 @@ namespace WpfMessageBoxLibrary
             
             IsTextBoxVisible = false;
             TextBoxText = String.Empty;
+            TextBoxMaxLength = 0;
 
             Footer = String.Empty;
             ImageFooter = MessageBoxImage.None;

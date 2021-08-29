@@ -29,13 +29,13 @@
             Margin="10,10,10,0" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition/>
                 <RowDefinition Height="Auto" MaxHeight="500"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" MaxHeight="500"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Image
@@ -66,14 +66,27 @@
                 Margin="0,0,0,10"
                 Text="[Message]"
                 TextWrapping="Wrap"/>
-            <TextBox
-                x:Name="textBox"
+            <DockPanel
                 Grid.Row="3"
-                Grid.Column="1"
-                Height="20"
-                Margin="0,10,0,10"
-                Text="[TextBox]"
-                TextOptions.TextFormattingMode="Display"/>
+                Grid.Column="1">
+                <Grid DockPanel.Dock="Top" HorizontalAlignment="Left" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox
+                            x:Name="textBox"
+                            Margin="0,10,0,10"
+                            Text="[TextBox]"
+                            TextWrapping="Wrap"
+                            AcceptsReturn="True"
+                            MinWidth="150"
+                            MaxWidth="{Binding ElementName=userctrl,Path=ActualWidth}"
+                            VerticalScrollBarVisibility="Visible"
+                            TextOptions.TextFormattingMode="Display"/>
+                    </Grid>
+            </DockPanel>
+            
             <CheckBox
                 x:Name="checkBox"
                 Grid.Row="4"
@@ -128,7 +141,6 @@
                 HorizontalAlignment="Right">
                 <Button
                     x:Name="buttonAbort"
-                    Grid.Column="0"
                     Height="24"
                     MinWidth="80"
                     Padding="10,0"
@@ -138,7 +150,6 @@
                     TextOptions.TextFormattingMode="Display"/>
                 <Button
                     x:Name="buttonRetry"
-                    Grid.Column="0"
                     Height="24"
                     MinWidth="80"
                     Padding="10,0"
@@ -148,7 +159,6 @@
                     TextOptions.TextFormattingMode="Display"/>
                 <Button
                     x:Name="buttonIgnore"
-                    Grid.Column="0"
                     Height="24"
                     MinWidth="80"
                     Padding="10,0"
@@ -158,7 +168,6 @@
                     TextOptions.TextFormattingMode="Display"/>
                 <Button
                     x:Name="buttonOk"
-                    Grid.Column="0"
                     Height="24"
                     MinWidth="80"
                     Padding="10,0"
@@ -168,7 +177,6 @@
                     TextOptions.TextFormattingMode="Display"/>
                 <Button
                     x:Name="buttonYes"
-                    Grid.Column="1"
                     Height="24"
                     MinWidth="80"
                     Margin="10,0,0,0"
@@ -178,7 +186,6 @@
                     TextOptions.TextFormattingMode="Display"/>
                 <Button
                     x:Name="buttonNo"
-                    Grid.Column="2"
                     Height="24"
                     MinWidth="80"
                     Margin="10,0,0,0"
@@ -188,7 +195,6 @@
                     TextOptions.TextFormattingMode="Display"/>
                 <Button
                     x:Name="buttonCancel"
-                    Grid.Column="3"
                     Height="24"
                     MinWidth="80"
                     Margin="10,0,0,0"
