@@ -22,10 +22,19 @@ namespace Demo
 
             //WpfMessageBox messageBox = new WpfMessageBox(WpfMessageBoxButton.OKCancel);
             //WpfMessageBox messageBox = new WpfMessageBox("Error", "", WpfMessageBoxButton.OKCancel, MessageBoxImage.Error, rm);
-            WpfMessageBox messageBox = new WpfMessageBox("Error", "", WpfMessageBoxButton.OKCancel, MessageBoxImage.Error, new WpfMessageBoxProperties() {
+            WpfMessageBox messageBox = new WpfMessageBox("Error", "", WpfMessageBoxButton.OKCancel, MessageBoxImage.None, new WpfMessageBoxProperties()
+            {
                 Details = "test details",
+                TextBoxText = "Test",
                 IsTextBoxVisible = true,
                 TextBoxMaxLength = 0,
+                TextValidationRule = new Validation()
+                {
+                    Rule = new Rule()
+                    {
+                        StringIsEmail = true,
+                    }
+                }
             });
             messageBox.ShowDialog();
 

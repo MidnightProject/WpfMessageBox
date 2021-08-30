@@ -6,6 +6,9 @@ using System.Drawing;
 using System;
 using System.Resources;
 using System.Runtime.InteropServices;
+using System.Windows.Threading;
+using System.Windows.Input;
+using System.Windows.Documents;
 
 namespace WpfMessageBoxLibrary
 {
@@ -60,11 +63,8 @@ namespace WpfMessageBoxLibrary
             set { buttonAbort.Content = value; }
         }
 
-        public string TextBoxText
-        {
-            get { return textBox.Text; }
-            set { textBox.Text = value; }
-        }
+        public string TextBoxText { get; set; }
+        
 
         public bool IsTextBoxVisible
         {
@@ -77,6 +77,8 @@ namespace WpfMessageBoxLibrary
             get { return textBox.MaxLength; }
             set { textBox.MaxLength = value; }
         }
+
+        public Validation ValidationText { get; set; }
 
         public string CheckBoxText
         {
@@ -269,6 +271,7 @@ namespace WpfMessageBoxLibrary
         public WpfMessageBox(String title, String message, WpfMessageBoxButton button, MessageBoxImage imageMain, WpfMessageBoxProperties properties)
         {
             InitializeComponent();
+            DataContext = this;
 
             CheckBoxText = properties.CheckBoxText;
             IsCheckBoxChecked = properties.IsCheckBoxChecked;
@@ -279,6 +282,7 @@ namespace WpfMessageBoxLibrary
             IsTextBoxVisible = properties.IsTextBoxVisible;
             TextBoxText = properties.TextBoxText;
             TextBoxMaxLength = properties.TextBoxMaxLength;
+            ValidationText = properties.TextValidationRule;
 
             Footer = properties.Footer;
             DisplayImageFooter(properties.ImageFooter);
@@ -304,6 +308,7 @@ namespace WpfMessageBoxLibrary
         public WpfMessageBox(String title, String message, MessageBoxButton button, MessageBoxImage imageMain, WpfMessageBoxProperties properties)
         {
             InitializeComponent();
+            DataContext = this;
 
             CheckBoxText = properties.CheckBoxText;
             IsCheckBoxChecked = properties.IsCheckBoxChecked;
@@ -314,6 +319,7 @@ namespace WpfMessageBoxLibrary
             IsTextBoxVisible = properties.IsTextBoxVisible;
             TextBoxText = properties.TextBoxText;
             TextBoxMaxLength = properties.TextBoxMaxLength;
+            ValidationText = properties.TextValidationRule;
 
             Footer = properties.Footer;
             DisplayImageFooter(properties.ImageFooter);
@@ -393,6 +399,7 @@ namespace WpfMessageBoxLibrary
         public WpfMessageBox(String title, String message, WpfMessageBoxButton button, MessageBoxImage imageMain, ResourceManager buttonText, WpfMessageBoxProperties properties)
         {
             InitializeComponent();
+            DataContext = this;
 
             CheckBoxText = properties.CheckBoxText;
             IsCheckBoxChecked = properties.IsCheckBoxChecked;
@@ -403,6 +410,7 @@ namespace WpfMessageBoxLibrary
             IsTextBoxVisible = properties.IsTextBoxVisible;
             TextBoxText = properties.TextBoxText;
             TextBoxMaxLength = properties.TextBoxMaxLength;
+            ValidationText = properties.TextValidationRule;
 
             Footer = properties.Footer;
             DisplayImageFooter(properties.ImageFooter);
@@ -421,6 +429,7 @@ namespace WpfMessageBoxLibrary
         public WpfMessageBox(String title, String message, MessageBoxButton button, MessageBoxImage imageMain, ResourceManager buttonText, WpfMessageBoxProperties properties)
         {
             InitializeComponent();
+            DataContext = this;
 
             CheckBoxText = properties.CheckBoxText;
             IsCheckBoxChecked = properties.IsCheckBoxChecked;
@@ -431,6 +440,7 @@ namespace WpfMessageBoxLibrary
             IsTextBoxVisible = properties.IsTextBoxVisible;
             TextBoxText = properties.TextBoxText;
             TextBoxMaxLength = properties.TextBoxMaxLength;
+            ValidationText = properties.TextValidationRule;
 
             Footer = properties.Footer;
             DisplayImageFooter(properties.ImageFooter);
@@ -448,9 +458,12 @@ namespace WpfMessageBoxLibrary
 
         private void DefaultSettings()
         {
+            DataContext = this;
+
             IsTextBoxVisible = false;
             TextBoxText = String.Empty;
             TextBoxMaxLength = 0;
+            ValidationText = new Validation();
 
             IsCheckBoxChecked = false;
             IsCheckBoxVisible = false;
@@ -710,6 +723,16 @@ namespace WpfMessageBoxLibrary
         private void Details_Collapsed(object sender, RoutedEventArgs e)
         {
             details.Header = "See details";
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Keyboard.Focus(textBox);
+
+            Dispatcher.BeginInvoke(DispatcherPriority.ContextIdle, new Action(() =>
+            {
+                textBox.SelectAll();
+            }));
         }
     }
 
