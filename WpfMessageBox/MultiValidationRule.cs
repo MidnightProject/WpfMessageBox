@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -19,13 +20,32 @@ namespace WpfMessageBoxLibrary
             {
                 string text = (string)value;
 
+                if (Wrapper.Validation.Rule.StringIsEmpty)
+                {
+                    if (String.IsNullOrEmpty(text))
+                    {
+                        return new ValidationResult(false, $"Field is empty");
+                    }
+                }
+
+                if (Wrapper.Validation.Rule.StringIsWhiteSpace)
+                {
+                    if (String.IsNullOrWhiteSpace(text))
+                    {
+                        return new ValidationResult(false, $"Field contains only white space");
+                    }
+                }
+
                 if (Wrapper.Validation.Rule.StringIsEmail)
                 {
-                    try
+                    string pattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|" + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)" + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
+                    var regex = new Regex(pattern, RegexOptions.IgnoreCase);
+
+                    if (regex.IsMatch(text))
                     {
-                        new System.Net.Mail.MailAddress((string)value);
+
                     }
-                    catch
+                    else
                     {
                         return new ValidationResult(false, $"Invalid email address");
                     }
@@ -70,9 +90,13 @@ namespace WpfMessageBoxLibrary
     public class Rule
     {
         public Boolean StringIsEmail { get; set; }
+        public Boolean StringIsEmpty { get; set; }
+        public Boolean StringIsWhiteSpace { get; set; }
 
         public Rule()
         {
+            StringIsEmpty = false;
+            StringIsWhiteSpace = false;
             StringIsEmail = false;
         }
     }

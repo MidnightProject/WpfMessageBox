@@ -15,13 +15,6 @@
         WindowStartupLocation="CenterOwner"
         WindowStyle="SingleBorderWindow" Loaded="Window_Loaded">
     <Window.Resources>
-        <ControlTemplate x:Key="validationTemplate">
-            <DockPanel>
-                <Image Height="20" Margin="0,0,5,0"></Image>
-                <AdornedElementPlaceholder/>
-            </DockPanel>
-        </ControlTemplate>
-
         <Style x:Key="textBoxInError" TargetType="{x:Type TextBox}">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="true">
@@ -92,32 +85,44 @@
                 Text="[Message]"
                 TextWrapping="Wrap"/>
             <DockPanel
-                x:Name="dockPanelText"
                 Grid.Row="3"
                 Grid.Column="1">
-                <Grid DockPanel.Dock="Top" HorizontalAlignment="Left" >
+                <Grid HorizontalAlignment="Left" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-
                     <ScrollViewer
                             Grid.Column="1"
                             VerticalScrollBarVisibility="Auto">
 
                         <StackPanel  
+                                Orientation="Horizontal"
                                 VerticalAlignment="Center">
+                            <Image Source="/WpfMessageBox;Component/warning_blue.png" Height="20" Margin="0,0,5,0">
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding Path=(Validation.HasError), ElementName=textBox}" Value="True"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </MultiDataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
                             <TextBox
                                     x:Name="textBox"
                                     Margin="0,10,0,10"
                                     TextWrapping="Wrap"
                                     AcceptsReturn="True"
-                                    MinWidth="{Binding ElementName=dockPanelText,Path=ActualWidth}"
+                                    MinWidth="250"
                                     TextOptions.TextFormattingMode="Display"
                                     local:SelectTextOnFocus.Active = "True"
-                                    Validation.ErrorTemplate="{StaticResource validationTemplate}"
                                     Style="{StaticResource textBoxInError}">
-
+                                
                                 <TextBox.Resources>
                                     <local:BindingProxy x:Key="proxy" Data="{Binding}"/>
                                 </TextBox.Resources>
@@ -138,7 +143,7 @@
                     </ScrollViewer>
                 </Grid>
             </DockPanel>
-            
+
             <CheckBox
                 x:Name="checkBox"
                 Grid.Row="4"
@@ -226,7 +231,21 @@
                     Margin="10,0,0,0"
                     Click="ButtonOk_Click"
                     Content="[OK]"
-                    TextOptions.TextFormattingMode="Display"/>
+                    TextOptions.TextFormattingMode="Display">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="IsEnabled" Value="False"/>
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Path=(Validation.HasError), ElementName=textBox}" Value="False"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
                 <Button
                     x:Name="buttonYes"
                     Height="24"
