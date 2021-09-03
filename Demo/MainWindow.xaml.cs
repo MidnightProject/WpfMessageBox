@@ -21,7 +21,9 @@ namespace Demo
             //var resVal = test.ResourceManager.GetString("String1");
 
             //WpfMessageBox messageBox = new WpfMessageBox(WpfMessageBoxButton.OKCancel);
-            //WpfMessageBox messageBox = new WpfMessageBox("Error", "", WpfMessageBoxButton.OKCancel, MessageBoxImage.Error, rm);
+            //WpfMessageBox messageBox = new WpfMessageBox("Error", "blaa bla", WpfMessageBoxButton.OKCancel, MessageBoxImage.Error, rm);
+
+            /*
             WpfMessageBox messageBox = new WpfMessageBox("Error", "", WpfMessageBoxButton.OKCancel, MessageBoxImage.None, new WpfMessageBoxProperties()
             {
                 Details = "test details",
@@ -37,9 +39,10 @@ namespace Demo
                 }
             });
             messageBox.ShowDialog();
+            */
 
-            //messageBox = new WpfMessageBox("message", WpfMessageBoxButton.OK);
-            //messageBox.ShowDialog();
+            WpfMessageBox messageBox = new WpfMessageBox("message", WpfMessageBoxButton.OK);
+            messageBox.ShowDialog();
             //WpfMessageBoxResult result = messageBox.Result;
 
             this.Close();

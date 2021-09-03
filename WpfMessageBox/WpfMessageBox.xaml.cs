@@ -298,7 +298,6 @@ namespace WpfMessageBoxLibrary
             ButtonYesText = properties.ButtonYesText;
             ButtonOkText = properties.ButtonOkText;
             ButtonRetryText = properties.ButtonRetryText;
-            ButtonYesText = properties.ButtonYesText;
             DisplayButtons(button);
 
             Title = title;
@@ -335,7 +334,6 @@ namespace WpfMessageBoxLibrary
             ButtonYesText = properties.ButtonYesText;
             ButtonOkText = properties.ButtonOkText;
             ButtonRetryText = properties.ButtonRetryText;
-            ButtonYesText = properties.ButtonYesText;
             DisplayButtons((WpfMessageBoxButton)button);
 
             Title = title;
@@ -472,6 +470,14 @@ namespace WpfMessageBoxLibrary
             Header = String.Empty;
             Details = String.Empty;
             Footer = String.Empty;
+
+            ButtonAbortText = defaultAbortButtonText;
+            ButtonCancelText = defaultCancelButtonText;
+            ButtonIgnoreText = defaultIgnoreButtonText;
+            ButtonNoText = defaultNoButtonText;
+            ButtonYesText = defaultYesButtonText;
+            ButtonOkText = defaultOkButtonText;
+            ButtonRetryText = defaultRetryButtonText;
         }
 
         private void DisplayImageFooter(MessageBoxImage image)
