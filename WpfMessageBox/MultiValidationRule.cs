@@ -50,6 +50,27 @@ namespace WpfMessageBoxLibrary
                         return new ValidationResult(false, $"Invalid email address");
                     }
                 }
+
+                if (Wrapper.Validation.Rule.StringIsExcluded)
+                {
+                    foreach(string s in Wrapper.Validation.TextExclusionList)
+                    {
+                        if (Wrapper.Validation.Rule.IgnoreCase)
+                        {
+                            if (text.ToUpper() == s.ToUpper())
+                            {
+                                return new ValidationResult(false, $"The string is excluded");
+                            }
+                        }
+                        else
+                        {
+                            if (text == s)
+                            {
+                                return new ValidationResult(false, $"The string is excluded");
+                            }
+                        }
+                    }
+                }
             }
 
             return ValidationResult.ValidResult;
@@ -75,15 +96,13 @@ namespace WpfMessageBoxLibrary
     {
         public Rule Rule { get; set; }
 
-        public List<string> ListContainsText { get; set; }
-        public List<string> ListExcludedText { get; set; }
+        public List<string> TextExclusionList { get; set; }
 
         public Validation()
         {
             Rule = new Rule();
 
-            ListContainsText = new List<string>();
-            ListExcludedText = new List<string>();
+            TextExclusionList = null;
         }
     }
 
@@ -92,12 +111,16 @@ namespace WpfMessageBoxLibrary
         public Boolean StringIsEmail { get; set; }
         public Boolean StringIsEmpty { get; set; }
         public Boolean StringIsWhiteSpace { get; set; }
+        public Boolean StringIsExcluded { get; set; }
+        public Boolean IgnoreCase { get; set; }
 
         public Rule()
         {
             StringIsEmpty = false;
             StringIsWhiteSpace = false;
             StringIsEmail = false;
+            StringIsExcluded = false;
+            IgnoreCase = true;
         }
     }
 

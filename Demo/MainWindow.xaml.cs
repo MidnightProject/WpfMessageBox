@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using System.Resources;
 using System.Threading;
@@ -23,7 +24,7 @@ namespace Demo
             //WpfMessageBox messageBox = new WpfMessageBox(WpfMessageBoxButton.OKCancel);
             //WpfMessageBox messageBox = new WpfMessageBox("Error", "blaa bla", WpfMessageBoxButton.OKCancel, MessageBoxImage.Error, rm);
 
-            /*
+            
             WpfMessageBox messageBox = new WpfMessageBox("Error", "", WpfMessageBoxButton.OKCancel, MessageBoxImage.None, new WpfMessageBoxProperties()
             {
                 Details = "test details",
@@ -34,15 +35,18 @@ namespace Demo
                 {
                     Rule = new Rule()
                     {
-                        StringIsEmail = true,
-                    }
+                        //StringIsEmail = true,
+                        StringIsExcluded = true,
+                    },
+
+                    TextExclusionList = new List<string>() {"test", },
                 }
             });
             messageBox.ShowDialog();
-            */
+            
 
-            WpfMessageBox messageBox = new WpfMessageBox("message", WpfMessageBoxButton.OK);
-            messageBox.ShowDialog();
+            //WpfMessageBox messageBox = new WpfMessageBox("message", WpfMessageBoxButton.OK);
+            //messageBox.ShowDialog();
             //WpfMessageBoxResult result = messageBox.Result;
 
             this.Close();

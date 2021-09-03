@@ -30,8 +30,8 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="109*"/>
-            <ColumnDefinition Width="141*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -46,11 +46,10 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto" MaxHeight="500"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*" MaxHeight="500"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" MaxHeight="500"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid 
                 Grid.Row="0"
@@ -58,7 +57,6 @@
                 Grid.Column="0"
                 MaxWidth="32"
                 Margin="0,0,10,0">
-                
                 <Image
                 x:Name="imageIcon"
                 VerticalAlignment="Top"/>
@@ -76,18 +74,20 @@
                 Foreground="#0078d7"
                 Text="[Header]"
                 TextWrapping="Wrap"/>
-            <TextBlock
+            <Grid
                 Grid.Row="1"
                 Grid.Column="1"
-                Grid.RowSpan="2"
-                Margin="0,0,0,10"
-                x:Name="textBlockMessage"
-                Text="[Message]"
-                TextWrapping="Wrap"
-                VerticalAlignment="Center"
-               />
+                Margin="0,0,0,5"
+                VerticalAlignment="Center">
+                
+                <TextBlock
+                    x:Name="textBlockMessage"
+                    Text="[Message]"
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Center"/>
+            </Grid>
             <DockPanel
-                Grid.Row="3"
+                Grid.Row="2"
                 Grid.Column="1">
                 <Grid HorizontalAlignment="Left" >
                     <Grid.ColumnDefinitions>
@@ -148,7 +148,7 @@
 
             <CheckBox
                 x:Name="checkBox"
-                Grid.Row="4"
+                Grid.Row="3"
                 Grid.Column="1"
                 Margin="0,0,0,10"
                 Content="[CheckBox]"
